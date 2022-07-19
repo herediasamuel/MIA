@@ -13,5 +13,4 @@ import google
 #client = storage.Client(credentials=credentials)
 
 st.title('Proyecto Visualizacion')
-df_ventas=pd.read_excel('MIA/Dummy UC.xlsx',sheet_name='BDD')
-st.table(df_ventas)
+

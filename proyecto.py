@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import google
 
-from google.oauth2 import service_account
-from google.cloud import storage
+#from google.oauth2 import service_account
+#from google.cloud import storage
 
 # Create API client.
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"]
-)
-client = storage.Client(credentials=credentials)
+#credentials = service_account.Credentials.from_service_account_info(
+#    st.secrets["gcp_service_account"]
+#)
+#client = storage.Client(credentials=credentials)
 
 st.title('Proyecto Visualizacion')

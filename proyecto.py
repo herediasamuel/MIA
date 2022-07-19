@@ -2,4 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+from google.oauth2 import service_account
+from google.cloud import storage
+
+# Create API client.
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = storage.Client(credentials=credentials)
+
 st.title('Proyecto Visualizacion')

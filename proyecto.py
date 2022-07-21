@@ -15,4 +15,4 @@ import google
 st.title('Proyecto Visualizacion')
 
 df_ventas=pd.read_csv("datos_uc.csv",delimiter=';')
-st.table(df_ventas)
+

@@ -19,7 +19,7 @@ df_ventas=pd.read_csv('datos_uc.csv',delimiter='\t')
 
 
 venta_mensual=pd.pivot_table(df_ventas,values=['Ofs'],index=['Fecha','Nombre_Categoria'],aggfunc=np.sum)
-st.table(venta_mensual)
+
 
 st.altair_chart(
     alt.Chart(venta_mensual).mark_bar().encode(

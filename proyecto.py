@@ -23,7 +23,7 @@ venta_mensual_ori=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['F
 
 st.table(venta_mensual_ori)
 
-alt.selection_multi(fields=['Origen_Zona'], bind='legend')
+selection = alt.selection_multi(fields=['Origen_Zona'], bind='legend')
 
 st.altair_chart(
     alt.Chart(venta_mensual_ori).mark_area().encode(

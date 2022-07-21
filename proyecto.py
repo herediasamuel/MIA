@@ -62,8 +62,8 @@ st.altair_chart(
     ).add_selection(
         selection
     ).properties(
-        width=700,
-        height=300,
+        width=1000,
+        height=500,
         title='Ofs por Zona de Origen'
     )
 )

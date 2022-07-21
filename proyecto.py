@@ -15,7 +15,7 @@ import altair as alt
 
 st.title('Proyecto Visualizacion')
 
-df_ventas=pd.read_csv('datos_uc.csv',delimiter=';',low_memory=False)
+df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 st.table(df_ventas)
 venta_mensual=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha Nominal','Nombre_Categoria'],aggfunc=np.sum).reset_index()
 

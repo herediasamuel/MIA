@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import google
+import altair as alt
 
 #from google.oauth2 import service_account
 #from google.cloud import storage

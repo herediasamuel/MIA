@@ -27,7 +27,7 @@ selection = alt.selection_multi(fields=['Origen_Zona'], bind='legend')
 
 st.altair_chart(
     alt.Chart(venta_mensual_ori).mark_area().encode(
-        alt.X('yearmonth(Fecha Nominal):N', title='Fecha'),
+        alt.X('yearmonth(Fecha):N', title='Fecha'),
         alt.Y('sum(Ofs):Q'),
         alt.Color('Origen_Zona:N', title='Zona de Origen'),
         opacity=alt.condition(selection, alt.value(1), alt.value(0.2))

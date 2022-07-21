@@ -14,5 +14,5 @@ import google
 
 st.title('Proyecto Visualizacion')
 
-df_ventas=pd.read_excel("MIA/Dummy_UC.xlsx",sheet_name='BDD')
+df_ventas=pd.read_csv("datos_uc.csv",delimiter=';')
 st.table(df_ventas)

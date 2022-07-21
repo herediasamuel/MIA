@@ -23,7 +23,7 @@ st.table(venta_mensual)
 
 st.altair_chart(
     alt.Chart(venta_mensual).mark_bar().encode(
-        alt.X('Ano:N', title='Fecha'),
+        alt.X('Ano:n', title='Fecha'),
         alt.Y('Venta_Neta:Q', title='Venta Neta Mensual'), 
     ).properties(
         width=1000,

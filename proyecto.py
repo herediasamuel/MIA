@@ -22,7 +22,7 @@ venta_mensual=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha
 st.altair_chart(
     alt.Chart(venta_mensual).mark_bar().encode(
         alt.X('yearmonth(Fecha):N', title='Fecha'),
-        alt.Y('Venta_Neta:Q', title='Venta Neta Mensual'), 
+        alt.Y('Ofs:Q', title='Venta Neta Mensual'), 
     ).properties(
         width=1000,
         height=500,

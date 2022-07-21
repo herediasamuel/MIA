@@ -35,7 +35,7 @@ with c30:
     
     st.title("Proyecto Visualizacion")
     st.header("")
-with st.expander("ℹ️ - About this app", expanded=True):
+with st.expander("Acerca de los datos", expanded=True):
     st.write(
         """     
 Para este proyecto trabajaremos con los datos de venta de la empresa de logistica TonyStar, esta empresa participa en el mercado de Corrier a nivel nacional con cobertura de Arica a Punta Areas con una red de 300 sucursales generando más de 1.000.000 de envíos al mes.
@@ -55,7 +55,7 @@ selection = alt.selection_multi(fields=['Origen_Zona'], bind='legend')
 
 st.altair_chart(
     alt.Chart(venta_mensual_ori).mark_area().encode(
-        alt.X('yearmonth(Fecha):N', title='Fecha'),
+        alt.X('yearmonth(Fecha):T', title='Fecha'),
         alt.Y('sum(Ofs):Q'),
         alt.Color('Origen_Zona:N', title='Zona de Origen'),
         opacity=alt.condition(selection, alt.value(1), alt.value(0.2))

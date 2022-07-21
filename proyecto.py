@@ -4,18 +4,7 @@ import numpy as np
 import google
 import altair as alt
 
-#from google.oauth2 import service_account
-#from google.cloud import storage
-
-# Create API client.
-#credentials = service_account.Credentials.from_service_account_info(
-#    st.secrets["gcp_service_account"]
-#)
-#client = storage.Client(credentials=credentials)
-
 st.set_page_config(layout="wide", page_title="Trabajo Aplicaciones",page_icon="🎈")
-
-
 
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
@@ -31,11 +20,11 @@ def _max_width_():
     )
 _max_width_()
 c30, c31, c32 = st.columns([2.5, 1, 3])
-with c30:
+with c32:
     
     st.title("Proyecto Visualizacion")
-    st.header("")
-with st.expander("Acerca de los datos", expanded=True):
+    st.header("Integrandes: Edgar Heredia, Alejandro Garcia y Misael Zavala.")
+with st.expander("Acerca de los datos", expanded=False):
     st.write(
         """     
 Para este proyecto trabajaremos con los datos de venta de la empresa de logistica TonyStar, esta empresa participa en el mercado de Corrier a nivel nacional con cobertura de Arica a Punta Areas con una red de 300 sucursales generando más de 1.000.000 de envíos al mes.

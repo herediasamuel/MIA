@@ -18,17 +18,21 @@ st.title('Proyecto Visualizacion')
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 
 
-venta_mensual=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Ano','Nombre_Categoria'],aggfunc=np.sum).reset_index()
-st.table(venta_mensual)
+venta_mensual_ori=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona'],aggfunc=np.sum).reset_index()
+st.table(venta_mensual_ori)
 
 st.altair_chart(
-    alt.Chart(venta_mensual).mark_bar().encode(
-        alt.X('Ano:O', title='Fecha'),
-        alt.Y('Venta_Neta:Q', title='Venta Neta Mensual'), 
+    alt.selection_multi(fields=['Origen_Zona'], bind='legend')
+    alt.Chart(venta_mensual_ori).mark_area().encode(
+        alt.X('yearmonth(Fecha Nominal):N', title='Fecha'),
+        alt.Y('sum(Ofs):Q'),
+        alt.Color('Origen_Zona:N', title='Zona de Origen'),
+        opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
+    ).add_selection(
+        selection
     ).properties(
-        width=1000,
-        height=500,
-        title='Ventas Netas Mensaules 2018 a 2022'
+        width=700,
+        height=300,
+        title='Ofs por Zona de Origen'
     )
 )
-

@@ -18,7 +18,7 @@ st.title('Proyecto Visualizacion')
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 
 
-venta_mensual=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Ano','Nombre_Categoria'],aggfunc=np.sum)
+venta_mensual=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Ano','Nombre_Categoria'],aggfunc=np.sum).reset_index()
 st.table(venta_mensual)
 
 st.altair_chart(

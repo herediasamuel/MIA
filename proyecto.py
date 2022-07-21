@@ -32,7 +32,7 @@ def _max_width_():
 _max_width_()
 c30, c31, c32 = st.columns([2.5, 1, 3])
 with c30:
-    # st.image("logo.png", width=400)
+    
     st.title("Proyecto Visualizacion")
     st.header("")
 with st.expander("ℹ️ - About this app", expanded=True):
@@ -42,6 +42,7 @@ Para este proyecto trabajaremos con los datos de venta de la empresa de logistic
 La data con la que trabajaremos se encuentra alterada por motivos de seguridad de la compañia y ninguna de los valores es real ademas esta se encuentra agrupada a nivel de regiones. Contamos son las ventas desde 2018 a 2022 en ordenes de flete (tickets de venta por cliente) y la venta neta siguiente nivel de detalle: 
 	    """
     )
+    st.image("datos.png", width=400)
     st.markdown("")
 st.markdown("")
 

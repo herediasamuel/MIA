@@ -19,10 +19,13 @@ df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 
 
 venta_mensual_ori=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona'],aggfunc=np.sum).reset_index()
+
+
 st.table(venta_mensual_ori)
 
+alt.selection_multi(fields=['Origen_Zona'], bind='legend')
+
 st.altair_chart(
-    alt.selection_multi(fields=['Origen_Zona'], bind='legend')
     alt.Chart(venta_mensual_ori).mark_area().encode(
         alt.X('yearmonth(Fecha Nominal):N', title='Fecha'),
         alt.Y('sum(Ofs):Q'),

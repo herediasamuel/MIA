@@ -42,12 +42,12 @@ st.markdown("")
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 
 venta_mensual_ori=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona'],aggfunc=np.sum).reset_index()
-venta_mensual_ori['Fecha'] = pd.to_datetime(venta_mensual_ori['Fecha'])
+venta_mensual_ori['Fecha']=pd.to_datetime(venta_mensual_ori['Fecha'],dayfirst=True))
 selection = alt.selection_multi(fields=['Origen_Zona'], bind='legend')
 
 st.altair_chart(
     alt.Chart(venta_mensual_ori).mark_bar().encode(
-        alt.X('Fecha:N', title='Fecha'),
+        alt.X('Fecha:T', title='Fecha'),
         alt.Y('sum(Ofs):Q'),
         alt.Color('Origen_Zona:N', title='Zona de Origen'),
         opacity=alt.condition(selection, alt.value(1), alt.value(0.2))

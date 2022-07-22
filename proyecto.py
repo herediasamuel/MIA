@@ -42,7 +42,8 @@ st.markdown("")
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 
 venta_mensual_ori=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona'],aggfunc=np.sum).reset_index()
-venta_mensual_ori['Fecha']=pd.to_datetime(venta_mensual_ori['Fecha'],dayfirst=True))
+venta_mensual_ori['Fecha']=pd.to_datetime(venta_mensual_ori['Fecha'],dayfirst=True)
+
 selection = alt.selection_multi(fields=['Origen_Zona'], bind='legend')
 
 st.altair_chart(

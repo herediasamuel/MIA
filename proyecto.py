@@ -4,6 +4,7 @@ import numpy as np
 import google
 import altair as alt
 
+alt.data_transformers.enable('default', max_rows=None)
 st.set_page_config(layout="wide", page_title="Trabajo Aplicaciones",page_icon="🎈")
 
 def _max_width_():
@@ -34,7 +35,7 @@ La data con la que trabajaremos se encuentra alterada por motivos de seguridad d
 Contamos son las ventas desde 2018 a 2022 en ordenes de flete (tickets de venta por cliente) y la venta neta siguiente nivel de detalle: 
 	    """
     )
-    st.image("datos.png")
+    st.image("tabla_datos.png")
     st.markdown("")
 st.markdown("")
 

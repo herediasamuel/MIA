@@ -54,7 +54,7 @@ g_od = alt.Chart(df_od).mark_bar().encode(
 ).properties(
     width=1000,
     height=500,
-    title='Distribución de Ofs en % según Origen y Destino'
+    title='Distribución de Ordenes de Flete en % según Origen y Destino'
 ).transform_filter(
     brush
 ).add_selection(
@@ -62,14 +62,14 @@ g_od = alt.Chart(df_od).mark_bar().encode(
 )
 
 ofs=alt.Chart(df_od).mark_line().encode(
-    alt.X('Fecha:T', title='Fecha'),
-    alt.Y('sum(Ofs):Q'),
+    alt.X('Fecha:T', title='Fecha de Envios'),
+    alt.Y('sum(Ofs):Q',title='Ordenes de Flete Mensuales'),
 ).add_selection(
     brush
 ).properties(
     width=1000,
     height=200,
-    title='Ofs por Periodo Enero 2018 a Junio 2022'
+    title='Ordenes de Flete Distribuidas por Periodo Enero 2018 a Junio 2022'
 ).transform_filter(
     dest
 )

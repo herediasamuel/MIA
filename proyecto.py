@@ -40,23 +40,46 @@ Contamos son las ventas desde 2018 a 2022 en ordenes de flete (tickets de venta 
 st.markdown("")
 
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
+df_od=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona','Destino_Zona'],aggfunc=np.sum).reset_index()
+df_od['Fecha']=pd.to_datetime(df_od['Fecha'],dayfirst=True)
 
-venta_mensual_ori=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona'],aggfunc=np.sum).reset_index()
-venta_mensual_ori['Fecha']=pd.to_datetime(venta_mensual_ori['Fecha'],dayfirst=True)
+color = alt.Color('Destino_Zona:N',title='Zona de Destino')
+dest= alt.selection_multi(encodings=['color'])
+brush = alt.selection_interval(encodings=['x'])
 
-selection = alt.selection_multi(fields=['Origen_Zona'], bind='legend')
-
-st.altair_chart(
-    alt.Chart(venta_mensual_ori).mark_bar().encode(
-        alt.X('Fecha:T', title='Fecha'),
-        alt.Y('sum(Ofs):Q'),
-        alt.Color('Origen_Zona:N', title='Zona de Origen'),
-        opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
-    ).add_selection(
-        selection
-    ).properties(
-        width=1400,
-        height=500,
-        title='Ofs por Zona de Origen'
-    )
+g_od = alt.Chart(df_od).mark_bar().encode(
+    x=alt.X('sum(Ofs):Q', stack='normalize',axis=alt.Axis(format=".0%"),title='% de Ofs'),
+    y=alt.Y('Origen_Zona:N', title='Zona de Origen'),
+    color=alt.condition(dest,color,alt.value('lightgray'),title='Zona de Destino')
+).properties(
+    width=1000,
+    height=500,
+    title='Distribución de Ofs en % según Origen y Destino'
+).transform_filter(
+    brush
+).add_selection(
+    dest
 )
+
+ofs=alt.Chart(df_od).mark_line().encode(
+    alt.X('Fecha:T', title='Fecha'),
+    alt.Y('sum(Ofs):Q'),
+).add_selection(
+    brush
+).properties(
+    width=1000,
+    height=200,
+    title='Ofs por Periodo Enero 2018 a Junio 2022'
+).transform_filter(
+    dest
+)
+
+grafico1=alt.vconcat(
+    ofs,
+    g_od,
+    title="Ordenes de Flete 2018 a 2022 y su Distribucion según Origen y Destino"
+)
+
+st.altair_chart(grafico1)
+
+

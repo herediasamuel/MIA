@@ -158,4 +158,4 @@ grafico_2=alt.vconcat(
     title="Ordenes de Flete 2018 a 2022 según Origen, Tipo de Origen, Destino y Tipo de Entrega"
 )
 
-st.altair_chart(grafico2)
+st.altair_chart(grafico_2)

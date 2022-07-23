@@ -82,4 +82,66 @@ grafico1=alt.vconcat(
 
 st.altair_chart(grafico1)
 
+color = alt.Color('Tipo_de_Emision_Origen:N',title='Tipo de Emision de Origen',scale=alt.Scale(scheme='tableau20'))
+ori_2= alt.selection_multi(encodings=['color'])
+g_os = alt.Chart(df_cat).mark_bar().encode(
+    y=alt.Y('sum(Ofs):Q', stack='normalize',axis=alt.Axis(format=".0%"),title='% de Ofs'),
+    x=alt.X('Origen_Zona:N', title='Zona de Origen'),
+    color=alt.condition(ori_2,color,alt.value('lightgray'),title='Tipo de Emision de Origen')
+).properties(
+    width=500,
+    height=200,
+    title='Distribución de Ofs en % según Origen y tipo de Entrega'
+).add_selection(
+    ori_2
+)
 
+color = alt.Color('Tipo_de_Entrega:N',title='Tipo de Entrega',scale=alt.Scale(scheme='dark2'))
+dest_2= alt.selection_multi(encodings=['color'])
+g_ds = alt.Chart(df_cat).mark_bar().encode(
+    y=alt.Y('sum(Ofs):Q', stack='normalize',axis=alt.Axis(format=".0%"),title='% de Ofs'),
+    x=alt.X('Destino_Zona:N', title='Zona de Destino'),
+    color=alt.condition(dest_2,color,alt.value('lightgray'),title='Tipo de Entrega')
+).properties(
+    width=500,
+    height=200,
+    title='Distribución de Ofs en % según Origen y tipo de Entrega'
+).add_selection(
+    dest_2
+)
+
+
+
+color=alt.Color('Nombre_Categoria:N',title='Categoria Cliente')
+cat= alt.selection_multi(encodings=['color'])
+g_cat=alt.Chart(df_cat).mark_bar().encode(
+    alt.X('Fecha:T', title='Fecha'),
+    alt.Y('sum(Ofs):Q'),
+    color=alt.condition(cat,color,alt.value('lightgray'),title='Tipo de Entrega'),
+).add_selection(
+    cat
+).properties(
+    width=1000,
+    height=200,
+    title='Ofs por Periodo Enero 2018 a Junio 2022'
+)
+
+
+g_os=g_os.transform_filter(
+    cat
+)
+
+g_ds=g_ds.transform_filter(
+    cat
+)
+
+
+o_d=g_os|g_ds
+
+grafico_2=alt.vconcat(
+    g_cat,
+    o_d,
+    title="Ordenes de Flete 2018 a 2022 según Origen, Tipo de Origen, Destino y Tipo de Entrega"
+)
+
+st.altair_chart(grafico2)

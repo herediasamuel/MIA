@@ -39,9 +39,13 @@ Contamos son las ventas desde 2018 a 2022 en ordenes de flete (tickets de venta 
     st.markdown("")
 st.markdown("")
 
+### Primer idioms
+
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
 df_od=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Origen_Zona','Destino_Zona'],aggfunc=np.sum).reset_index()
 df_od['Fecha']=pd.to_datetime(df_od['Fecha'],dayfirst=True)
+
+### Grafico de Origen - Destino
 
 color = alt.Color('Destino_Zona:N',title='Zona de Destino')
 dest= alt.selection_multi(encodings=['color'])
@@ -60,6 +64,8 @@ g_od = alt.Chart(df_od).mark_bar().encode(
 ).add_selection(
     dest
 )
+
+# Grafico de Venta Anual
 
 ofs=alt.Chart(df_od).mark_line().encode(
     alt.X('Fecha:T', title='Fecha de Envios'),
@@ -82,6 +88,16 @@ grafico1=alt.vconcat(
 
 st.altair_chart(grafico1)
 
+
+### Segundo idioms
+
+df_cat=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Nombre_Categoria','Tipo_de_Entrega','Tipo_de_Emision_Origen','Origen_Zona','Destino_Zona'],aggfunc=np.sum).reset_index()
+df_cat['Fecha']=pd.to_datetime(df_cat['Fecha'],dayfirst=True)
+df_cat.info()
+df_cat
+
+## Grafico de Barras de Origen
+
 color = alt.Color('Tipo_de_Emision_Origen:N',title='Tipo de Emision de Origen',scale=alt.Scale(scheme='tableau20'))
 ori_2= alt.selection_multi(encodings=['color'])
 g_os = alt.Chart(df_cat).mark_bar().encode(
@@ -95,6 +111,8 @@ g_os = alt.Chart(df_cat).mark_bar().encode(
 ).add_selection(
     ori_2
 )
+
+## Grafico de Barras de Destino
 
 color = alt.Color('Tipo_de_Entrega:N',title='Tipo de Entrega',scale=alt.Scale(scheme='dark2'))
 dest_2= alt.selection_multi(encodings=['color'])
@@ -110,7 +128,7 @@ g_ds = alt.Chart(df_cat).mark_bar().encode(
     dest_2
 )
 
-
+## Grafico de Venta por Categoria
 
 color=alt.Color('Nombre_Categoria:N',title='Categoria Cliente')
 cat= alt.selection_multi(encodings=['color'])
@@ -125,16 +143,14 @@ g_cat=alt.Chart(df_cat).mark_bar().encode(
     height=200,
     title='Ofs por Periodo Enero 2018 a Junio 2022'
 )
-
-
 g_os=g_os.transform_filter(
     cat
 )
-
 g_ds=g_ds.transform_filter(
     cat
 )
 
+### Union de Graficos
 
 o_d=g_os|g_ds
 

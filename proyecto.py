@@ -93,8 +93,6 @@ st.altair_chart(grafico1)
 
 df_cat=pd.pivot_table(df_ventas,values=['Venta_Neta','Ofs'],index=['Fecha','Nombre_Categoria','Tipo_de_Entrega','Tipo_de_Emision_Origen','Origen_Zona','Destino_Zona'],aggfunc=np.sum).reset_index()
 df_cat['Fecha']=pd.to_datetime(df_cat['Fecha'],dayfirst=True)
-df_cat.info()
-df_cat
 
 ## Grafico de Barras de Origen
 

@@ -48,7 +48,9 @@ with c30:
     unsafe_allow_html=True,
     )
     st.markdown('<br></br>',unsafe_allow_html=True)
-    st.title("Presentación de los Datos")
+    st.title("1. Caracterización de dominio")
+    st.markdown('<br></br>',unsafe_allow_html=True)
+    st.title("2. Abstracción de datos y tareas")
     
 with st.expander("Acerca de los datos", expanded=False):
     st.write(
@@ -110,6 +112,7 @@ grafico1=alt.vconcat(
     g_od,
     title="Ordenes de Flete 2018 a 2022 y su Distribucion según Origen y Destino"
 )
+
 st.markdown('<br></br>',unsafe_allow_html=True)
 st.altair_chart(grafico1)
 st.markdown('<br></br>',unsafe_allow_html=True)
@@ -185,3 +188,7 @@ grafico_2=alt.vconcat(
 
 st.altair_chart(grafico_2)
 st.markdown('<br></br>',unsafe_allow_html=True)
+st.markdown('<br></br>',unsafe_allow_html=True)
+st.title("3. Marcas y canales")
+st.markdown('<br></br>',unsafe_allow_html=True)
+st.title("4. Alternativas de diseño")

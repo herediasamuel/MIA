@@ -112,7 +112,7 @@ grafico1=alt.vconcat(
     g_od,
     title="Ordenes de Flete 2018 a 2022 y su Distribucion según Origen y Destino"
 )
-
+st.title("Vizualización")
 st.markdown('<br></br>',unsafe_allow_html=True)
 st.altair_chart(grafico1)
 st.markdown('<br></br>',unsafe_allow_html=True)

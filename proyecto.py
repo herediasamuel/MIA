@@ -49,7 +49,7 @@ with c30:
     )
     st.markdown('<br></br>',unsafe_allow_html=True)
     st.title("Presentación de los Datos")
-    st.markdown('<br></br>',unsafe_allow_html=True)
+    
 with st.expander("Acerca de los datos", expanded=False):
     st.write(
         """     
@@ -63,7 +63,7 @@ Contamos son las ventas desde 2018 a 2022 en ordenes de flete (tickets de venta 
     st.image("tabla_datos.png")
     st.markdown("")
     st.markdown("")
-
+    
 ### Primer idioms
 
 df_ventas=pd.read_csv('datos_uc.csv',delimiter=';')
@@ -110,7 +110,7 @@ grafico1=alt.vconcat(
     g_od,
     title="Ordenes de Flete 2018 a 2022 y su Distribucion según Origen y Destino"
 )
-
+st.markdown('<br></br>',unsafe_allow_html=True)
 st.altair_chart(grafico1)
 st.markdown('<br></br>',unsafe_allow_html=True)
 

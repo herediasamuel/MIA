@@ -27,8 +27,15 @@ with c30:
     contents = file_.read()
     data_url = base64.b64encode(contents).decode("utf-8")
     file_.close()
+    file2_ = open("equipo.gif", "rb")
+    contents2 = file2_.read()
+    data2_url = base64.b64encode(contents2).decode("utf-8")
+    file2_.close()
     st.markdown(
     f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+    unsafe_allow_html=True,
+    )
+    f'<img src="data:image/gif;base64,{data2_url}" alt="cat gif">',
     unsafe_allow_html=True,
     )
     st.title("Proyecto Visualización")

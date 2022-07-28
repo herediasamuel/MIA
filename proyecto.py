@@ -47,8 +47,9 @@ with c30:
     f'<img src="data:image/gif;base64,{data_url_linea}" alt="cat gif">',
     unsafe_allow_html=True,
     )
-    #st.title("Proyecto Visualización")
-    #st.header("Integrandes: Edgar Heredia, Alejandro García y Misael Zavala.")
+    st.markdown('<br></br>',unsafe_allow_html=True)
+    st.title("Presentación de los Datos")
+    st.markdown('<br></br>',unsafe_allow_html=True)
 with st.expander("Acerca de los datos", expanded=False):
     st.write(
         """     
@@ -61,7 +62,7 @@ Contamos son las ventas desde 2018 a 2022 en ordenes de flete (tickets de venta 
     )
     st.image("tabla_datos.png")
     st.markdown("")
-st.markdown("")
+    st.markdown("")
 
 ### Primer idioms
 
@@ -111,7 +112,7 @@ grafico1=alt.vconcat(
 )
 
 st.altair_chart(grafico1)
-
+st.markdown('<br></br>',unsafe_allow_html=True)
 
 ### Segundo idioms
 
@@ -183,3 +184,4 @@ grafico_2=alt.vconcat(
 )
 
 st.altair_chart(grafico_2)
+st.markdown('<br></br>',unsafe_allow_html=True)

@@ -31,6 +31,10 @@ with c30:
     contents2 = file2_.read()
     data2_url = base64.b64encode(contents2).decode("utf-8")
     file2_.close()
+    linea_ = open("linea.png", "rb")
+    contents3 = linea_.read()
+    data_url_linea = base64.b64encode(contents3).decode("utf-8")
+    linea_.close()
     st.markdown(
     f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
     unsafe_allow_html=True,
@@ -39,8 +43,12 @@ with c30:
     f'<img src="data:image/gif;base64,{data2_url}" alt="cat gif">',
     unsafe_allow_html=True,
     )
-    st.title("Proyecto Visualización")
-    st.header("Integrandes: Edgar Heredia, Alejandro García y Misael Zavala.")
+    st.markdown(
+    f'<img src="data:image/gif;base64,{data_url_linea}" alt="cat gif">',
+    unsafe_allow_html=True,
+    )
+    #st.title("Proyecto Visualización")
+    #st.header("Integrandes: Edgar Heredia, Alejandro García y Misael Zavala.")
 with st.expander("Acerca de los datos", expanded=False):
     st.write(
         """     

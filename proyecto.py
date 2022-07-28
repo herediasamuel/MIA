@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import google
 import altair as alt
+import base64
 
 alt.data_transformers.enable('default', max_rows=None)
 st.set_page_config(layout="wide", page_title="Trabajo Aplicaciones",page_icon="🎈")
@@ -22,7 +23,14 @@ def _max_width_():
 _max_width_()
 c30, c31, c32 = st.columns([2.5, 1, 3])
 with c30:
-    
+    file_ = open("intro.gif", "rb")
+    contents = file_.read()
+    data_url = base64.b64encode(contents).decode("utf-8")
+    file_.close()
+    st.markdown(
+    f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+    unsafe_allow_html=True,
+    )
     st.title("Proyecto Visualización")
     st.header("Integrandes: Edgar Heredia, Alejandro García y Misael Zavala.")
 with st.expander("Acerca de los datos", expanded=False):
